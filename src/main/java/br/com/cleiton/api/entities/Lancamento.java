@@ -31,7 +31,7 @@ public class Lancamento implements Serializable {
 
 	public Lancamento() {}
 
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@Temporal(TemporalType.TIMESTAMP)

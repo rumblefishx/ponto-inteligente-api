@@ -11,7 +11,7 @@ import org.hibernate.validator.constraints.br.CPF;
 
 public class CadastroPFDto {
 
-	CadastroPFDto(){}
+	public CadastroPFDto(){}
 	
 	private Long id;
 	private String nome;

@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.br.CPF;
 
 public class CadastroPJDto {
 	
-	CadastroPJDto(){}
+	public CadastroPJDto(){}
 	
 	private Long id;
 	private String nome;
