@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.Length;
 
 public class FuncionarioDto {	
 	
-	FuncionarioDto(){}
+	public FuncionarioDto(){}
 
 	private Long id;
 	private String nome;
