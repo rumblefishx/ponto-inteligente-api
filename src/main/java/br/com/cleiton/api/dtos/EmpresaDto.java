@@ -2,7 +2,7 @@ package br.com.cleiton.api.dtos;
 
 public class EmpresaDto {
 	
-	EmpresaDto(){}
+	public EmpresaDto(){}
 
 	private Long id;
 	private String razaoSocial;

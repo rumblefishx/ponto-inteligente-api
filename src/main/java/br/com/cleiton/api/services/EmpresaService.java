@@ -14,6 +14,13 @@ public interface EmpresaService {
 	Optional<Empresa> findCompanyByCnpj(String cnpj);
 	
 	/**
+	 * Método capaz de localizar uma empresa por meio do seu respectivo nome.
+	 * @param razaoSocial - nome da empresa
+	 * @return retorna um objeto do tipo Empresa.
+	 */
+	Optional<Empresa> findCompanyByRazaoSocial(String razaoSocial);
+	
+	/**
 	 * Método capaz de persistir a empresa que se deseja cadastrar.
 	 * @param empresa - objeto do tipo empresa que será persistido em banco.
 	 * @return - retorna a entidade persistida.

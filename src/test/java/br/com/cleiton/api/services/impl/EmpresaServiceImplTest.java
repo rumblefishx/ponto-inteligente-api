@@ -26,7 +26,7 @@ import br.com.cleiton.api.services.EmpresaService;
 public class EmpresaServiceImplTest {
 	
 	private static final String CNPJ = "547862338775";
-	
+	private static final String RAZAO_SOCIAL = "Matrix";
 	
 	@Autowired
 	EmpresaService service;
@@ -37,12 +37,19 @@ public class EmpresaServiceImplTest {
 	@Before
 	public void setUp() {
 		BDDMockito.given(this.repository.findByCnpj(Mockito.anyString())).willReturn(new Empresa());
+		BDDMockito.given(this.repository.findByRazaoSocial(Mockito.anyString())).willReturn(new Empresa());
 		BDDMockito.given(this.repository.save(Mockito.any(Empresa.class))).willReturn(new Empresa());
 	}
 	
 	@Test
 	public void findCompanyByCnpjTest(){
 		Optional<Empresa> empresa = this.service.findCompanyByCnpj(CNPJ);
+		assertTrue(empresa.isPresent());
+	}
+	
+	@Test
+	public void findCompanyByRazaoSocialTest(){
+		Optional<Empresa> empresa = this.service.findCompanyByRazaoSocial(RAZAO_SOCIAL);
 		assertTrue(empresa.isPresent());
 	}
 	
