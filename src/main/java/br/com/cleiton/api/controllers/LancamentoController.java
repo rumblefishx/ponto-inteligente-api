@@ -155,7 +155,6 @@ public class LancamentoController {
 		
 		lancamento.setLocalizacao(dto.getLocalizacao());
 		lancamento.setDescricao(dto.getDescricao());
-		lancamento.setFuncionario(new Funcionario());
 		
 		if(dto.getData() != null && !dto.getData().isEmpty()) {
 			try {
