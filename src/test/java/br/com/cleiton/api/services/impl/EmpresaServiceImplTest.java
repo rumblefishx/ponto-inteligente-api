@@ -13,6 +13,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -42,18 +43,21 @@ public class EmpresaServiceImplTest {
 	}
 	
 	@Test
+	@WithMockUser
 	public void findCompanyByCnpjTest(){
 		Optional<Empresa> empresa = this.service.findCompanyByCnpj(CNPJ);
 		assertTrue(empresa.isPresent());
 	}
 	
 	@Test
+	@WithMockUser
 	public void findCompanyByRazaoSocialTest(){
 		Optional<Empresa> empresa = this.service.findCompanyByRazaoSocial(RAZAO_SOCIAL);
 		assertTrue(empresa.isPresent());
 	}
 	
 	@Test
+	@WithMockUser
 	public void persistEmpresaTest() {
 		Optional<Empresa> empresa = this.service.saveCompany(new Empresa());
 		assertTrue(empresa.isPresent());

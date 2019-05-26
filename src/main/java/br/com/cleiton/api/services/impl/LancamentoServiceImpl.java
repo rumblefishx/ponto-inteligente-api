@@ -3,9 +3,12 @@ package br.com.cleiton.api.services.impl;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import br.com.cleiton.api.entities.Lancamento;
 import br.com.cleiton.api.repositories.LancamentoRepository;
@@ -18,6 +21,7 @@ public class LancamentoServiceImpl implements LancamentoService {
 	LancamentoRepository repository;
 
 	@Override
+	@Cacheable("lancamentosPorId")
 	public Optional<Lancamento> buscarPorLancamentoId(Long id) {
 		return repository.findById(id);
 	}
@@ -28,6 +32,7 @@ public class LancamentoServiceImpl implements LancamentoService {
 	}
 
 	@Override
+	@CachePut("lancamentosPorId")
 	public Lancamento persistir(Lancamento lancamento) {
 		return repository.save(lancamento);
 	}

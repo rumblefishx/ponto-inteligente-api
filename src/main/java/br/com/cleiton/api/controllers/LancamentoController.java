@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -81,6 +82,7 @@ public class LancamentoController {
 	}
 	
 	@PostMapping("/remover/{id}")
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	public ResponseEntity<Response<String>> removerLancamento(@PathVariable Long id) {
 		Response<String> response = new Response<String>();
 		
@@ -148,7 +150,7 @@ public class LancamentoController {
 				result.addError(new ObjectError("Lancamento", "O lancamento não foi localizado pelo código fornecido."));
 			}
 		} else {
-			
+			lancamento.setFuncionario(new Funcionario());
 			lancamento.getFuncionario().setId(dto.getFuncionarioId());
 		}
 		
