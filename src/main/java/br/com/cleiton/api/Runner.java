@@ -6,6 +6,11 @@ import org.springframework.cache.annotation.EnableCaching;
 
 @SpringBootApplication
 @EnableCaching
+/**
+ * Classe principal da api
+ * @author rumblefish
+ *
+ */
 public class Runner {
 	
 	public static void main(String args[]) {

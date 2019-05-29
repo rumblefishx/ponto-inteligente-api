@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.hibernate.annotations.common.util.impl.LoggerFactory;
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -26,18 +28,36 @@ import br.com.cleiton.api.utils.PasswordUtils;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/pessoafisica")
+@RequestMapping("/api")
 public class CadastroPFController {
+	
+	/**
+	 * Classe de Logger
+	 */
+	private Logger log = LoggerFactory.logger(CadastroPFController.class);
 
+	/**
+	 * Serviço responsável pela busca de funcionarios.
+	 */
 	@Autowired
 	private FuncionarioService service;
 	
+	/**
+	 * Serviço responsável pela busca de empresas.
+	 */
 	@Autowired
 	private EmpresaService empresaService;
 	
-	@PostMapping("/cadastrar/")
+	/**
+	 * Método responsável por cadastrar pessoa fisica
+	 * @param dto - dados de requisicao
+	 * @param result - dados de validacao do input
+	 * @return retorna os dados do usuário recem cadastrado.
+	 */
+	@PostMapping("/pessoa-fisica/")
 	public ResponseEntity<Response<CadastroPFDto>> cadastrarPessoaFisica(@RequestBody @Valid CadastroPFDto dto,BindingResult result) {
 		Response<CadastroPFDto> response = new Response<CadastroPFDto>();
+		log.info("Cadastro pessoa fisica iniciado!");
 		
 		verifyIfPfExists(dto,result);
 		if(result.hasErrors()) {
@@ -50,6 +70,9 @@ public class CadastroPFController {
 		funcionario.setEmpresa(empresa.get());
 		service.saveFuncionario(funcionario);
 		response.setData(this.castEntityToDto(funcionario));
+		
+		log.info("Cadastro pessoa fisica finalizado!");
+		
 		return ResponseEntity.ok(response);
 	}
 	

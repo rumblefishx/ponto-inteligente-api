@@ -21,11 +21,23 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @Profile("dev")
 @EnableSwagger2
+/**
+ * Classe responsável por subir a configuração do swagger
+ * @author rumblefish
+ *
+ */
 public class SwaggerConfig {
 	
+	/**
+	 * Serviço responsável por consultar a base e devolver as informações de usuário no formato 
+	 * ideal para gerar token.
+	 */
 	@Autowired
 	JwtUserDetailsServiceImpl service;
 
+	/**
+	 * 	Classe de Util responsável por gerar os Tokens
+	 */
 	@Autowired
 	JwtTokenUtil util;
 	
