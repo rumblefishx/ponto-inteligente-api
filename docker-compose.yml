@@ -1,0 +1,25 @@
+version: '3.3'
+networks:
+    mynetwork:
+services:
+    banco:
+        image: mysql:8
+        ports:
+            - '3306:3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: 'root'
+            MYSQL_DATABASE: 'ponto_inteligente'
+            MYSQL_USER: 'usuario'
+            MYSQL_PASSWORD: '123456'
+        networks:
+            - mynetwork
+    backend:
+        image: rumblefishx/meurepositorio:javaimage
+        ports:
+            - '8080:8080'
+        links:
+            - banco
+        networks:
+            - mynetwork
+        depends_on:
+            - banco
